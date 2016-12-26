@@ -1,9 +1,11 @@
 version: '2'
 services:
      mysql:
-         image: daoclout.io/ld00000/mysql:0.2.0
+         image: daocloud.io/ld00000/azkaban-mysql:0.4.0
+#         build: azkaban-sql/
+#         image: mysql:5.7.17
          environment:
-             - MYSQL_USER=k2data
+             - MYSQL_USER=azkaban
              - MYSQL_PASSWORD=passw0rd
              - MYSQL_DATABASE=azkaban
              - MYSQL_ROOT_PASSWORD=passw0rd
@@ -11,28 +13,28 @@ services:
              - /etc/localtime:/etc/localtime:ro
              - /etc/timezone:/etc/timezone:ro
 
-    azkaban-web-server:
-        build: azkaban-web-server/
-        restart: always
-        depends_on:
-            - mysql
-        environment:
-            - /etc/localtime:/etc/localtime:ro
-            - /etc/timezone:/etc/timezone:ro
-        volumes:
-            - /etc/localtime:/etc/localtime:ro
-            - /etc/timezone:/etc/timezone:ro
-
-    azkaban-exec-server:
-        build: azkaban-exec-server/
-        restart: always
-        depends_on:
-            - mysql
-        environment:
-
-        volumes:
-            - /etc/localtime:/etc/localtime:ro
-            - /etc/timezone:/etc/timezone:ro
-        ports:
-            - "8082:8080"
-        command: webserver
+#    azkaban-web-server:
+#        build: azkaban-web-server/
+#        restart: always
+#        depends_on:
+#            - mysql
+#        environment:
+#            - /etc/localtime:/etc/localtime:ro
+#            - /etc/timezone:/etc/timezone:ro
+#        volumes:
+#            - /etc/localtime:/etc/localtime:ro
+#            - /etc/timezone:/etc/timezone:ro
+#
+#    azkaban-exec-server:
+#        build: azkaban-exec-server/
+#        restart: always
+#        depends_on:
+#            - mysql
+#        environment:
+#
+#        volumes:
+#            - /etc/localtime:/etc/localtime:ro
+#            - /etc/timezone:/etc/timezone:ro
+#        ports:
+#            - "8082:8080"
+#        command: webserver
