@@ -5,3 +5,4 @@ projects/
 temp/
 validator_jars/
 *.log
+/build
