@@ -8,36 +8,34 @@ services:
            - MYSQL_PASSWORD=passw0rd
            - MYSQL_DATABASE=azkaban
            - MYSQL_ROOT_PASSWORD=passw0rd
-       volumes:
-           - /etc/localtime:/etc/localtime:ro
-           - /etc/timezone:/etc/timezone:ro
+#       volumes:
+#           - /etc/localtime:/etc/localtime:ro
+#           - /etc/timezone:/etc/timezone:ro
 
 #    hadoop:
 #        image: docker pull harisekhon/hadoop
 
-    azkaban-web-server:
-        build: azkaban-web-server/
+#    azkaban-web-server:
+#        build: azkaban-web-server/
+#        restart: always
+#        depends_on:
+#            - mysql
+##        environment:
+##            - HADOOP_HOME=hadoop
+#        ports:
+#            - "8081:8081"
+#        volumes:
+#            - /etc/localtime:/etc/localtime:ro
+#            - /etc/timezone:/etc/timezone:ro
+
+    azkaban-exec-server:
+        build: azkaban-exec-server/
         restart: always
         depends_on:
             - mysql
 #        environment:
-#            - HADOOP_HOME=hadoop
-        ports:
-            - "8081:8081"
-        volumes:
-            - /etc/localtime:/etc/localtime:ro
-            - /etc/timezone:/etc/timezone:ro
-
-#    azkaban-exec-server:
-#        build: azkaban-exec-server/
-#        restart: always
-#        depends_on:
-#            - mysql
-#        environment:
-#
 #        volumes:
 #            - /etc/localtime:/etc/localtime:ro
 #            - /etc/timezone:/etc/timezone:ro
-#        ports:
-#            - "8082:8080"
-#        command: webserver
+        ports:
+            - "12321:12321"

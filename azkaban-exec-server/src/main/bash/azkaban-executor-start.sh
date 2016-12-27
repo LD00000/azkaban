@@ -48,6 +48,7 @@ serverpath=`pwd`
 if [ -z $AZKABAN_OPTS ]; then
   AZKABAN_OPTS="-Xmx3G"
 fi
+
 # Set the log4j configuration file
 if [ -f $conf/log4j.properties ]; then
   AZKABAN_OPTS="$AZKABAN_OPTS -Dlog4j.configuration=file:$conf/log4j.properties"
@@ -57,4 +58,5 @@ AZKABAN_OPTS="$AZKABAN_OPTS -server -Dcom.sun.management.jmxremote -Djava.io.tmp
 java $AZKABAN_OPTS $JAVA_LIB_PATH -cp $CLASSPATH azkaban.execapp.AzkabanExecutorServer -conf $conf $@ &
 
 echo $! > $azkaban_dir/currentpid
+
 
