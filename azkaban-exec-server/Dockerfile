@@ -1,4 +1,4 @@
-FROM daocloud.io/ld00000/jdk-8
+FROM daocloud.io/ld00000/jdk-8:0.6.0
 MAINTAINER <lidong9144@163.com>
 
 COPY build/distributions/azkaban-exec-server-*.tar.gz /opt/k2data/azkaban-exec-server.tar.gz
