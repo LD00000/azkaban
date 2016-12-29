@@ -1,7 +1,7 @@
 version: '2'
 services:
     mysql:
-       image: ld00000/azkaban-mysql
+       image: daocloud.io/ld00000/azkaban-mysql:0.7.0
        restart: always
        environment:
            - MYSQL_USER=azkaban
@@ -21,22 +21,22 @@ services:
        volumes:
            - /etc/localtime:/etc/localtime:ro
            - /etc/timezone:/etc/timezone:ro
-       ports:
-           - "12321:12321"
+#       ports:
+#           - "12321:12321"
+
+    azkaban-web-server:
+        build: azkaban-web-server/
+        restart: always
+        depends_on:
+            - mysql
+#        environment:
+#            - HADOOP_HOME=hadoop
+        ports:
+            - "8082:8081"
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone:ro
 
 #    hadoop:
 #        image: docker pull harisekhon/hadoop
-
-#    azkaban-web-server:
-#        build: azkaban-web-server/
-#        restart: always
-#        depends_on:
-#            - mysql
-##        environment:
-##            - HADOOP_HOME=hadoop
-#        ports:
-#            - "8081:8081"
-#        volumes:
-#            - /etc/localtime:/etc/localtime:ro
-#            - /etc/timezone:/etc/timezone:ro
 
