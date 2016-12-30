@@ -2,6 +2,6 @@
 
 base_dir=$(dirname $0)/..
 
-bin/azkaban-web-start.sh $base_dir >logs/webServerLog_`date +%F+%T`.out 2>&1 &
+bin/azkaban-web-start.sh $base_dir >logs/webServerLog_`date +%F`.out 2>&1 &
 
-tail -f logs/webServerLog_`date +%F+%T`.out
+tail -f logs/webServerLog_`date +%F`.out

@@ -1,7 +1,7 @@
 version: '2'
 services:
     mysql:
-       image: daocloud.io/ld00000/azkaban-mysql:0.7.0
+       image: daocloud.io/ld00000/azkaban-mysql:1.0.0
        restart: always
        environment:
            - MYSQL_USER=azkaban
