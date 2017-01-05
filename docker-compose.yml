@@ -28,6 +28,7 @@ services:
         build: azkaban-web-server/
         restart: always
         depends_on:
+            - azkaban-exec-server
             - mysql
 #        environment:
 #            - HADOOP_HOME=hadoop
