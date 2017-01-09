@@ -24,15 +24,9 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 
+import azkaban.jobExecutor.*;
 import org.apache.log4j.Logger;
 
-import azkaban.jobExecutor.JavaProcessJob;
-import azkaban.jobExecutor.Job;
-import azkaban.jobExecutor.NoopJob;
-import azkaban.jobExecutor.ProcessJob;
-import azkaban.jobExecutor.PythonJob;
-import azkaban.jobExecutor.RubyJob;
-import azkaban.jobExecutor.ScriptJob;
 import azkaban.jobExecutor.utils.JobExecutionException;
 import azkaban.utils.Props;
 import azkaban.utils.PropsUtils;
@@ -95,6 +89,7 @@ public class JobTypeManager {
     logger.info("Loading plugin default job types");
     plugins.addPluginClass("command", ProcessJob.class);
     plugins.addPluginClass("javaprocess", JavaProcessJob.class);
+    plugins.addPluginClass("javajar", JavaJarJob.class);
     plugins.addPluginClass("noop", NoopJob.class);
     plugins.addPluginClass("python", PythonJob.class);
     plugins.addPluginClass("ruby", RubyJob.class);
