@@ -8,9 +8,9 @@ services:
             - MYSQL_PASSWORD=passw0rd
             - MYSQL_DATABASE=azkaban
             - MYSQL_ROOT_PASSWORD=passw0rd
-#       volumes:
-#           - /etc/localtime:/etc/localtime:ro
-#           - /etc/timezone:/etc/timezone:ro
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone:ro
         ports:
            - 3306:3306
 
@@ -19,10 +19,12 @@ services:
         restart: always
         depends_on:
             - mysql
-#       environment:
-#       volumes:
-#           - /etc/localtime:/etc/localtime:ro
-#           - /etc/timezone:/etc/timezone:ro
+            - hadoop
+        environment:
+            - HADOOP_HOME=hadoop
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone:ro
 #       ports:
 #           - "12321:12321"
 
@@ -32,13 +34,11 @@ services:
         depends_on:
             - azkaban-exec-server
             - mysql
-#        environment:
-#            - HADOOP_HOME=hadoop
         ports:
             - "8082:8081"
-#        volumes:
-#            - /etc/localtime:/etc/localtime:ro
-#            - /etc/timezone:/etc/timezone:ro
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone:ro
 
     influxdb:
         image: influxdb
@@ -49,6 +49,9 @@ services:
         ports:
             - 8083:8083
             - 8086:8086
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone:ro
 
     grafana:
         image: grafana/grafana
@@ -58,7 +61,11 @@ services:
             - influxdb
         ports:
             - 3000:3000
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone:ro
 
-#    hadoop:
-#        image: docker pull harisekhon/hadoop
+    hadoop:
+        image: sequenceiq/hadoop-docker:2.7.1
+        restart: always
 
