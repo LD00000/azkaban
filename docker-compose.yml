@@ -15,7 +15,7 @@ services:
            - 3306:3306
 
     azkaban-exec-server:
-        build: azkaban-exec-server/
+        image: daocloud.io/ld00000/azkaban-exec-server
         restart: always
         depends_on:
             - mysql
@@ -29,7 +29,7 @@ services:
 #           - "12321:12321"
 
     azkaban-web-server:
-        build: azkaban-web-server/
+        image: daocloud.io/ld00000/azkaban-web-server
         restart: always
         depends_on:
             - azkaban-exec-server
